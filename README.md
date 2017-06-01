@@ -4,10 +4,10 @@
 
 Barcelona Software Craftsmanship
 
-Date:	
+*Date:	*
 Monday, May 22, 2017
 
-Location:
+*Location:*
 
 Magento Commerce A
 
