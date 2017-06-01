@@ -3,9 +3,12 @@
 [Coding Dojo: Supermarket Pricing Kata](https://www.meetup.com/Barcelona-Software-Craftsmanship/events/239955256/?gj=co2&rv=co2)
 
 Barcelona Software Craftsmanship
-	
+
+Date:	
 Monday, May 22, 2017
-	
+
+Location:
+
 Magento Commerce A
 
 Llacuna 56-70 Building A, 1st floor, Barcelona
