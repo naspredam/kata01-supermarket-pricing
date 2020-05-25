@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Basket {
 
-    private final List<Item> items;
+    private final List<BasketItem> items;
 
-    public Basket(List<Item> items) {
+    public Basket(List<BasketItem> items) {
         this.items = items;
     }
 
-    public List<Item> getItems() {
+    public List<BasketItem> getItems() {
         return items;
     }
 
@@ -21,14 +21,20 @@ public class Basket {
 
     public static class BasketTaker {
 
-        private final List<Item> items;
+        private final List<BasketItem> items;
 
         public BasketTaker() {
             this.items = new ArrayList<>();
         }
 
-        public BasketTaker addItem(Item item) {
-            items.add(item);
+        public BasketTaker addItemUnit(Item item) {
+            items.add(BasketItem.pickItem(item, ItemQuantity.unit()));
+            return this;
+        }
+
+        public BasketTaker addItemMass(Item item, double amountMass, ItemMassUnit massUnit) {
+            ItemQuantity mass = ItemQuantity.mass(amountMass, massUnit);
+            items.add(BasketItem.pickItem(item, mass));
             return this;
         }
 
