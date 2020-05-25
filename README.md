@@ -12,6 +12,10 @@ Monday, May 22, 2017
 
 Magento Commerce A
 
+*Kata*
+
+[http://codekata.com/kata/kata01-supermarket-pricing/]
+
 Llacuna 56-70 Building A, 1st floor, Barcelona
 
 ## Project description and purpose

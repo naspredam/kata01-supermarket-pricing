@@ -1,23 +1,29 @@
 package com.kata.supermarket.kata01_supermarket_pricing;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Bill {
 	
-	private List<Item> basket;
+	private final Basket basket;
 	
-	public Bill(List<Item> basket) {
+	private Bill(Basket basket) {
 		this.basket = basket;
 	}
 
-	public double generateBill() {
-		return this.basket.stream()
-				.mapToDouble(Item::getPrice)
+	public static Bill of(Basket basket) {
+		return new Bill(basket);
+	}
+
+	public double getCost() {
+		List<Item> items = basket.getItems();
+		return IntStream.range(0, items.size())
+				.mapToDouble(idx -> applyDiscount(idx) ? 0.0 : items.get(idx).getPrice())
 				.sum();
 	}
 
-	public void buy(Item bean) {
-		this.basket.add(bean);
+	private boolean applyDiscount(int idx) {
+		return idx > 0 && idx % 3 == 0;
 	}
 }
 

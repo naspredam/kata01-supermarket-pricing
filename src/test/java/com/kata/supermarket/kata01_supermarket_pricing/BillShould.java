@@ -1,39 +1,40 @@
 package com.kata.supermarket.kata01_supermarket_pricing;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
-import org.assertj.core.api.Assertions;
-import org.junit.Before;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by naspredam on May 22, 2017
  */
 public class BillShould {
 	
-	private Bill bill;
-	
-	private List<Item> basket;
-	
-	@Before
-	public void setUp() {
-		this.basket = new ArrayList<>();
-		this.bill = new Bill(basket);
-	}
-	
 	@Test
 	public void buy_WhenBuyingSingleItem() {
-		bill.buy(Item.BEAN);
-		Assertions.assertThat(basket.iterator().next()).as("We have an item on the basket").isEqualTo(Item.BEAN);
+		Basket basket = Basket.pick()
+				.addItem(Item.BEAN)
+				.stopAddingItems();
+
+		Optional<Item> first = basket.getItems()
+				.stream()
+				.findFirst();
+		assertThat(first).as("We have an item in the basket")
+				.isPresent()
+				.containsSame(Item.BEAN);
 	}
 	
 	@Test
 	public void returnPrice_WhenBuyingTwoItem() {
-		bill.buy(Item.BEAN);
-		bill.buy(Item.BEAN);
-		Assertions.assertThat(bill.generateBill()).as("We have an item on the basket").isEqualTo(1.30);
+		Basket basket = Basket.pick()
+				.addItem(Item.BEAN)
+				.addItem(Item.BEAN)
+				.stopAddingItems();
+
+		double basketCost = Bill.of(basket).getCost();
+		assertThat(basketCost).as("We have two item in the basket")
+				.isEqualTo(1.30);
 	}	
 	
 }

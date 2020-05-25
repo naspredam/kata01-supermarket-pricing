@@ -6,7 +6,7 @@ public enum Item {
 	
 	private double simplePrice;
 	
-	private Item(double price) {
+	Item(double price) {
 		this.simplePrice = price;
 	}
 	
